@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      *{
+        margin:0;
+        padding:0;
+      }
+      html:{
+        width: 100%;
+        height: 100%;
+      }
+      body{
+        position:relative;
+        width:100%;
+        min-height: 100%;
+        overflow: hidden;
+      }
+      .poster{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+      }
+      .poster .background{
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+      #video_player{
+        position: absolute;
+        z-index: 1;
+        top:0;
+        left:0;
+        right: 0;
+        bottom:0;
+        z-index:1;
+      }
+      .mask{
+        position: absolute;
+        z-index:2;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.35;
+      }
+      .content{
+        position:absolute;
+        display: flex;
+        flex-direction: column;
+        width:1200px;
+        height: 100%;
+        margin:0 auto;
+        top:0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        z-index:3;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo{
+        width: 420px;
+        height: 88px;
+        background:url("https://i.alipayobjects.com/i/ecmng/png/201501/4JdljnmTmX.png");
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .icon{
+        position: absolute;
+        top:30px;
+        right: -50px;
+      }
+      .operate button{
+        color:#fff;
+        width: 188px;
+        height: 32px;
+        background: none;
+        border:1px solid #fff;
+        border-radius: 6px;
+      }
+      .operate  button.login{
+        background-color: #00bbee;
+        border: none;
+        margin-right: 20px;
+      }
+      .arrow{
+        position: absolute;
+        bottom:80px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-right: 3px solid #fff;
+        border-top:3px solid #fff;
+        -webkit-transform:rotate(135deg);
+
+      }
+      .hide{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="poster">
+      <video id="video_player" poster="" class="video-player" autoplay>
+          <source src="https://t.alipayobjects.com/images/T1T78eXapfXXXXXXXX.mp4" type="video/mp4">
+      </video>
+      <div class="mask"></div>
+      <div class="background" style="background-image:url(https://t.alipayobjects.com/images/T1k5ReXXlkXXXXXXXX.jpg)"></div>
+      <div class="content">
+        <div class="logo">
+          <?xml version="1.0" standalone="no"?>
+          <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+          <svg t="1515053788055" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1002" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36">
+            <defs><style type="text/css"></style></defs>
+            <path d="M512.717999 1.548626C230.37665 1.548626 1.493605 230.43167 1.493605 512.7743s228.883045 511.225674 511.224394 511.225674S1023.942393 795.115649 1023.942393 512.7743 795.059349 1.548626 512.717999 1.548626zM512.717999 972.873567c-254.107727 0-460.101827-205.995381-460.101827-460.101827S258.610272 52.669914 512.717999 52.669914s460.101827 205.995381 460.101827 460.101827S766.825726 972.873567 512.717999 972.873567zM744.777647 476.541577c-79.555848-54.132789-223.814815-135.156632-305.958532-185.360262-33.67813-21.23793-61.996223-12.70897-64.717197 24.801049-1.970978 100.467414 0 294.316962 0 396.522421 1.711167 38.079555 35.28179 43.10171 64.418991 27.81255 82.050287-49.710887 223.071218-135.147673 305.536179-185.10941C743.516988 554.880282 806.671482 520.146271 744.777647 476.541577z" p-id="1003" fill="#ffffff"></path>
+          </svg>
+        </div>
+        <div class="operate">
+          <button class="login">登录</button>
+          <button class="register">注册</button>
+        </div>
+        <span class="arrow"></span>
+      </div>
+    </div>
+
+    <script>
+      var video=document.getElementById("video_player");
+      var iconPlay=document.getElementsByClassName('icon')[0];
+      var arrow=document.getElementsByClassName('arrow')[0];
+      video.addEventListener("ended",function(){
+        video.classList.add('hide');
+        iconPlay.style.display='block';
+      });
+      iconPlay.addEventListener('click',function(){
+        video.classList.remove('hide');
+        video.currentTime=0;
+        video.play();
+        this.style.display='none';
+      });
+      arrow.addEventListener('click',function(){
+        video.pause();
+      });
+    </script>
+  </body>
+</html>
